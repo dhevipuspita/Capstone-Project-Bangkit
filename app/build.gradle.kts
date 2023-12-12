@@ -53,4 +53,13 @@ dependencies {
 
     //gambar bulat
     implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    //view pager
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    //datastored
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("androidx.activity:activity-ktx:1.7.2")
 }

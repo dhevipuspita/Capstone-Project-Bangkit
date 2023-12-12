@@ -56,5 +56,31 @@
     <string name="login_now">Login Now</string>
     <string name="or">or</string>
     <string name="google">Login with Google</string>
+    <string name="home">Home</string>
+    <string name="plants">Plants</string>
+    <string name="about">About</string>
+    <string name="hello">"Hello, "</string>
+    <string name="names">Avi</string>
+    <string name="date">Date</string>
+    <string name="suhu">33</string>
+    <string name="derajat">\u00B0C</string>
+    <string name="lokasi">Surabaya</string>
+    <string name="your_plants">Your Plants</string>
+    <string name="pressure">Pressure</string>
+    <string name="mb">700 Mb</string>
+    <string name="wind">Wind</string>
+    <string name="km">10 km/h</string>
+    <string name="humadity">Humadity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_corn">Corn</string>
+    <string name="tab_veg">Vegetable</string>
+    <string name="tab_fruit">Fruit</string>
+    <string name="tab_text_1">This is tab 1</string>
+    <string name="tab_text_2">This is tab 2</string>
+    <string name="tab_text_3">This is tab 2</string>
+    <string name="ex_email">example@gmail.com</string>
+    <string name="ex_pass">min 8 char</string>
 
 </resources>

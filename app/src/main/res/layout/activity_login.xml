@@ -19,6 +19,7 @@
         android:layout_width="39dp"
         android:layout_height="21dp"
         android:layout_marginTop="288dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_medium"
         android:gravity="top"
         android:text="@string/email"
@@ -28,13 +29,14 @@
         app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_login"
-        tools:ignore="MissingConstraints" />
+        tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:alpha="0"
         app:boxCornerRadiusBottomEnd="15dp"
         app:boxCornerRadiusBottomStart="15dp"
         app:boxCornerRadiusTopEnd="15dp"
@@ -43,21 +45,23 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_email"
-        app:startIconDrawable="@drawable/ic_email">
+        app:startIconDrawable="@drawable/ic_email"
+        tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text" />
+            android:hint="@string/ex_email"
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tv_password"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="385dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_medium"
         android:gravity="top"
         android:text="@string/password"
@@ -67,13 +71,14 @@
         app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_login"
-        tools:ignore="MissingConstraints" />
+        tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:alpha="0"
         app:boxCornerRadiusBottomEnd="15dp"
         app:boxCornerRadiusBottomStart="15dp"
         app:boxCornerRadiusTopEnd="15dp"
@@ -83,14 +88,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_password"
-        app:startIconDrawable="@drawable/ic_lock">
+        app:startIconDrawable="@drawable/ic_lock"
+        tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text" />
+            android:hint="@string/ex_pass"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -98,6 +104,7 @@
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginTop="36dp"
+        android:alpha="0"
         android:backgroundTint="@color/green_100"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
@@ -106,17 +113,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passEditTextLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/passEditTextLayout"
+        tools:alpha="100" />
 
     <LinearLayout
         android:id="@+id/ll_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_google">
+        app:layout_constraintTop_toBottomOf="@+id/btn_google"
+        tools:alpha="100">
 
         <TextView
             android:id="@+id/tv_acc"
@@ -154,9 +164,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@color/grey"
-            app:layout_constraintTop_toTopOf="@+id/tv_or"
+            app:layout_constraintEnd_toStartOf="@+id/vv_2"
             app:layout_constraintStart_toEndOf="@+id/tv_or"
-            app:layout_constraintEnd_toStartOf="@+id/vv_2" />
+            app:layout_constraintTop_toTopOf="@+id/tv_or" />
 
         <TextView
             android:id="@+id/tv_or"
@@ -173,9 +183,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@color/grey"
-            app:layout_constraintTop_toTopOf="@+id/tv_or"
+            app:layout_constraintEnd_toEndOf="@+id/tv_or"
             app:layout_constraintStart_toEndOf="@+id/vv_1"
-            app:layout_constraintEnd_toEndOf="@+id/tv_or" />
+            app:layout_constraintTop_toTopOf="@+id/tv_or" />
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -183,8 +193,8 @@
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
-        android:gravity="center"
         android:background="@drawable/btn_google_background"
+        android:gravity="center"
         android:stateListAnimator="@animator/btn_anim"
         android:text="@string/google"
         android:textColor="@color/grey"
@@ -193,9 +203,9 @@
         app:icon="@drawable/ic_google"
         app:iconGravity="textStart"
         app:iconTint="@null"
-        app:layout_constraintTop_toBottomOf="@id/ll_or"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_or" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
