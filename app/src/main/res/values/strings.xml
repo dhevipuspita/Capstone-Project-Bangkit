@@ -82,5 +82,8 @@
     <string name="tab_text_3">This is tab 2</string>
     <string name="ex_email">example@gmail.com</string>
     <string name="ex_pass">min 8 char</string>
+    <string name="photo">Photo plant</string>
+    <string name="namePlant">Tomato</string>
+    <string name="panen">90 days</string>
 
 </resources>
