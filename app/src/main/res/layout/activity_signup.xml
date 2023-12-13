@@ -92,7 +92,7 @@
         app:startIconDrawable="@drawable/ic_email"
         tools:alpha="100">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.capstone.cuacatani.custom.EditEmail
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
         app:startIconDrawable="@drawable/ic_lock"
         tools:alpha="100">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.capstone.cuacatani.custom.EditPassword
             android:id="@+id/passEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

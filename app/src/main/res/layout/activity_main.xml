@@ -65,9 +65,10 @@
                 android:text="@string/date"
                 android:textColor="@color/green_200"
                 android:textSize="12dp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="28dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_second" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
@@ -115,9 +116,9 @@
 
         <ImageView
             android:id="@+id/iv_awan"
-            android:layout_width="81dp"
+            android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginLeft="88dp"
+            android:layout_marginLeft="120dp"
             android:src="@drawable/cloudy" />
 
     </LinearLayout>
@@ -330,20 +331,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_yourPlants"
         app:tabTextColor="@color/grey_100"
-        app:tabSelectedTextColor="@color/green_200"/>
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabSelectedTextColor="@color/green_200"
+        app:tabIndicatorColor="@color/green_200" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+<!--    <androidx.viewpager2.widget.ViewPager2-->
+<!--        android:id="@+id/view_pager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tabs" />-->
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabs" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/bottom_navigation_background"
         android:paddingLeft="30dp"

@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.CuacaTani" parent="Base.Theme.CuacaTani" />
+
+    <style name="RoundCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
 </resources>
