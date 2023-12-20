@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.cuacatani.data.UserRepository
 import com.capstone.cuacatani.di.Injection
+import com.capstone.cuacatani.ui.about.AboutViewModel
 import com.capstone.cuacatani.ui.login.LoginViewModel
+import com.capstone.cuacatani.ui.main.MainViewModel
 import com.capstone.cuacatani.ui.signup.SignupViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -16,7 +18,13 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
                 LoginViewModel(repository) as T
             }
             modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
-                LoginViewModel(repository) as T
+                SignupViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(AboutViewModel::class.java) -> {
+                AboutViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                MainViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

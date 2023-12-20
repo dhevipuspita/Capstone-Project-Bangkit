@@ -1,57 +1,36 @@
 package com.capstone.cuacatani.data.pref
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
+import com.capstone.cuacatani.response.LoginResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "session")
+class UserPreference (context: Context) {
 
-class UserPreference private constructor(private val dataStore: DataStore<androidx.datastore.preferences.core.Preferences>) {
+    private val preferences = context.getSharedPreferences(REFS_NAME, Context.MODE_PRIVATE)
 
-    suspend fun saveSession(user: UserModel) {
-        dataStore.edit { preferences ->
-            preferences[EMAIL_KEY] = user.email
-            preferences[TOKEN_KEY] = user.token
-            preferences[IS_LOGIN_KEY] = true
-        }
+    fun putUser(loginResult: LoginResult){
+        val editor = preferences.edit()
+        editor.putString(NAME, loginResult.name)
+        editor.putString(EMAIL, loginResult.email)
+        editor.apply()
     }
 
-    fun getSession(): Flow<UserModel> {
-        return dataStore.data.map { preferences ->
-            UserModel(
-                preferences[EMAIL_KEY] ?: "",
-                preferences[TOKEN_KEY] ?: "",
-                preferences[IS_LOGIN_KEY] ?: false
-            )
-        }
+    fun gainUser(): LoginResult?{
+        val gainName = preferences.getString(NAME, "")
+        val gainEmail = preferences.getString(EMAIL, "")
+        return LoginResult(gainName, gainEmail)
     }
 
-    suspend fun logout() {
-        dataStore.edit { preferences ->
-            preferences.clear()
-        }
-    }
-
-    companion object {
-        @Volatile
-        private var INSTANCE: UserPreference? = null
-
-        private val EMAIL_KEY = stringPreferencesKey("email")
-        private val TOKEN_KEY = stringPreferencesKey("token")
-        private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
-
-        fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
-            return INSTANCE ?: synchronized(this) {
-                val instance = UserPreference(dataStore)
-                INSTANCE = instance
-                instance
-            }
-        }
+    companion object{
+        private const val REFS_NAME = "user_preference"
+        private const val NAME = "name"
+        private const val EMAIL = "email"
     }
 }

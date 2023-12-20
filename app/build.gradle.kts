@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
     id("com.google.gms.google-services")
 }
 
@@ -16,6 +17,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField (
+            "String",
+            "WHEATER_API_URL",
+            "\"https://api.openweathermap.org/data/2.5/\""
+        )
     }
 
     buildTypes {
@@ -36,6 +43,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -53,6 +61,12 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
     //gambar bulat
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
@@ -67,4 +81,8 @@ dependencies {
 
     //firebase
     implementation("com.google.android.gms:play-services-auth:20.6.0")
+
+    //location
+    implementation("com.google.android.gms:play-services-maps:18.0.0")
+    implementation("com.google.android.gms:play-services-location:18.0.0")
 }

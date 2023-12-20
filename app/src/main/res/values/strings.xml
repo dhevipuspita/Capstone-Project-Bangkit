@@ -61,15 +61,16 @@
     <string name="about">About</string>
     <string name="hello">"Hello, "</string>
     <string name="names">Avi</string>
+    <string name="day">Day, </string>
     <string name="date">Date</string>
     <string name="suhu">33</string>
     <string name="derajat">\u00B0C</string>
-    <string name="lokasi">Surabaya</string>
+    <string name="lokasi">Malang</string>
     <string name="your_plants">Your Plants</string>
     <string name="pressure">Pressure</string>
     <string name="mb">700 Mb</string>
     <string name="wind">Wind</string>
-    <string name="km">10 km/h</string>
+    <string name="km">10 %</string>
     <string name="humadity">Humadity</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -110,5 +111,28 @@
     <string name="panen_10">60 days</string>
     <string name="email_invalid">Invalid email address</string>
     <string name="password_length">Minimum 8 char password</string>
-
+    <string name="logout">Log Out</string>
+    <string name="no_conection">No internet connection</string>
+    <string name="notes">Please connect it and try again</string>
+    <string name="tomato">Tomato\n</string>
+    <string name="yeah">Yeah!!</string>
+    <string name="sign_alert">Account with %1$s is activated. Lets login it!!</string>
+    <string name="slogan">plant now or later</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="req">Requirements</string>
+    <string name="how">How to Plant</string>
+    <string name="reqText">
+        &#8226; Area penanaman memiliki curah hujan yang ideal
+        \n&#8226; Memperoleh paparan sinar matahari secara langsung (min. 8 jam per hari)
+        \n&#8226; pH tanah 5,5 hingga 7,5
+        \n&#8226; Kemiringan tanah kurang dari 8%
+        \n&#8226; Punya ketersediaan air yang cukup
+    </string>
+    <string name="howText">
+        Choose the right tomato variety, start seeds indoor,preparing oil soil that should be slightly acidic to neutral (pH 6.0-7.0), choose a sunny location,Fertilizing\n
+    </string>
+    <string name="searchbar_hint">Find Plant</string>
+    <string name="searchbar2_hint">Find Your City</string>
+    <string name="condition">Sunny</string>
 </resources>

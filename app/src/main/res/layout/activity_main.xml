@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_100"
-    tools:context=".MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <LinearLayout
         android:id="@+id/ll_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -20,11 +20,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <View
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user"
             android:layout_width="47dp"
             android:layout_height="47dp"
-            android:background="@drawable/ic_user" />
+            android:src="@drawable/avatar2" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -56,44 +56,90 @@
                     android:textSize="17sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="260dp"
+            <LinearLayout
+                android:id="@+id/ll_calender"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:gravity="center"
-                android:text="@string/date"
-                android:textColor="@color/green_200"
-                android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll_second" />
+                app:layout_constraintTop_toBottomOf="@+id/ll_second">
+
+                <TextView
+                    android:id="@+id/tv_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:text="@string/day"
+                    android:textColor="@color/green_200"
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:text="@string/date"
+                    android:textColor="@color/green_200"
+                    android:textSize="12dp" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </LinearLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:background="@drawable/box_search"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        app:searchIcon="@drawable/ic_search"
+        app:queryHint="@string/searchbar2_hint"
+        android:layout_marginTop="-560dp"
+        android:layout_marginHorizontal="30dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_first">
+    </androidx.appcompat.widget.SearchView>
 
     <View
         android:id="@+id/vv_main"
-        android:layout_width="352dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="19dp"
+        android:layout_width="match_parent"
+        android:layout_height="205dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/box_weather"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_first" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/lokasi"
+        android:textColor="@color/brokenWhite"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchView" />
 
     <LinearLayout
         android:id="@+id/ll_third"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="56dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="-10dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_first"
+        app:layout_constraintTop_toBottomOf="@id/city"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
@@ -103,7 +149,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/suhu"
             android:textColor="@color/brokenWhite"
-            android:textSize="130px" />
+            android:textSize="140px" />
 
         <TextView
             android:id="@+id/tv_derajat"
@@ -112,25 +158,25 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/derajat"
             android:textColor="@color/brokenWhite"
-            android:textSize="130px" />
+            android:textSize="140px" />
 
         <ImageView
             android:id="@+id/iv_awan"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginLeft="120dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginHorizontal="105dp"
             android:src="@drawable/cloudy" />
-
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_lokasi"
+        android:id="@+id/tv_condt"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="-17dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/lokasi"
+        android:text="@string/condition"
         android:textColor="@color/brokenWhite"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,30 +188,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="68dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lokasi"
+        app:layout_constraintTop_toBottomOf="@+id/tv_condt"
         app:layout_constraintVertical_bias="0.0">
 
         <View
             android:id="@+id/vv_huma1"
             android:layout_width="80dp"
-            android:layout_height="88dp"
+            android:layout_height="80dp"
             android:background="@drawable/box_huma" />
 
         <View
             android:id="@+id/vv_huma2"
             android:layout_width="80dp"
-            android:layout_height="88dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="19dp"
             android:background="@drawable/box_huma" />
 
         <View
             android:id="@+id/vv_huma3"
             android:layout_width="80dp"
-            android:layout_height="88dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="19dp"
             android:background="@drawable/box_huma" />
 
@@ -176,12 +222,12 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginLeft="91dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/pressure"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lokasi"
+        app:layout_constraintTop_toBottomOf="@+id/tv_condt"
         app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
@@ -199,16 +245,18 @@
 
         <TextView
             android:id="@+id/tv_pressure"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/pressure"
             android:textSize="8sp" />
 
         <TextView
             android:id="@+id/tv_pressure2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/mb"
@@ -220,12 +268,12 @@
         android:layout_width="30dp"
         android:layout_height="34dp"
         android:layout_marginLeft="191dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/temperature"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lokasi"
+        app:layout_constraintTop_toBottomOf="@+id/tv_condt"
         app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
@@ -243,18 +291,19 @@
 
         <TextView
             android:id="@+id/tv_wind"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/wind"
             android:textSize="8sp" />
 
         <TextView
             android:id="@+id/tv_wind2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:gravity="center"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/km"
             android:textSize="10sp" />
@@ -265,12 +314,12 @@
         android:layout_width="30dp"
         android:layout_height="34dp"
         android:layout_marginLeft="288dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/temperature"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lokasi"
+        app:layout_constraintTop_toBottomOf="@+id/tv_condt"
         app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
@@ -288,19 +337,21 @@
 
         <TextView
             android:id="@+id/tv_humadity"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/humadity"
+            android:gravity="center"
             android:textSize="8sp" />
 
         <TextView
             android:id="@+id/tv_humadity2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/km"
+            android:gravity="center"
             android:textSize="10sp" />
     </RelativeLayout>
 
@@ -310,12 +361,12 @@
         android:layout_height="26dp"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:text="@string/your_plants"
         android:textColor="@color/green_200"
-        android:textSize="17sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -325,41 +376,41 @@
         android:id="@+id/tabs"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="-5dp"
         android:background="@color/green_100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_yourPlants"
-        app:tabTextColor="@color/grey_100"
-        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabIndicatorColor="@color/green_200"
         app:tabSelectedTextColor="@color/green_200"
-        app:tabIndicatorColor="@color/green_200" />
-
-<!--    <androidx.viewpager2.widget.ViewPager2-->
-<!--        android:id="@+id/view_pager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tabs" />-->
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="@color/grey_100" />
+    <!--    <androidx.viewpager2.widget.ViewPager2-->
+    <!--        android:id="@+id/view_pager"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tabs" />-->
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabs"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="360dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="30dp"
         android:background="@drawable/bottom_navigation_background"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
+        android:paddingHorizontal="30dp"
+        app:itemBackground="@drawable/pressed_bg"
         app:itemIconTint="@drawable/bottom_nav_item_color_state"
         app:itemRippleColor="@android:color/transparent"
         app:itemTextColor="@color/green_300"

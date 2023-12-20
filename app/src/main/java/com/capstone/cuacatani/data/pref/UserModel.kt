@@ -1,9 +1,11 @@
 package com.capstone.cuacatani.data.pref
 
-data class UserModel(
-    val email: String,
-    val token: String,
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-    //diluar data
-    val isLogin: Boolean = false
-)
+@Suppress("DEPRECATED_ANNOTATION")
+@Parcelize
+data class UserModel(
+    val email: String?,
+    val password: String?
+): Parcelable

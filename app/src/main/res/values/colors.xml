@@ -10,4 +10,6 @@
 
     <color name="grey">#9A9A99</color>
     <color name="grey_100">#C4BDBD</color>
+    <color name="grey_200">#838383</color>
+    <color name="grey_300">#4A4A4A</color>
 </resources>

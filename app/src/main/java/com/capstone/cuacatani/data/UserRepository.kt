@@ -1,33 +1,71 @@
 package com.capstone.cuacatani.data
 
-import com.capstone.cuacatani.data.pref.UserModel
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import com.capstone.cuacatani.data.pref.UserPreference
-import kotlinx.coroutines.flow.Flow
+import com.capstone.cuacatani.network.ApiService
+import com.capstone.cuacatani.network.Login
+import com.capstone.cuacatani.network.Register
+import com.capstone.cuacatani.response.LoginResponse
+import com.capstone.cuacatani.response.LoginResult
+import com.capstone.cuacatani.response.RegisterResponse
+import org.json.JSONObject
+import retrofit2.HttpException
 
 class UserRepository private constructor(
+    private val apiService: ApiService,
     private val userPreference: UserPreference
 ) {
 
-    suspend fun saveSession(user: UserModel) {
-        userPreference.saveSession(user)
+    suspend fun register(
+        username: String,
+        email: String,
+        password: String
+    ): Result<RegisterResponse> {
+        return try {
+            val response = apiService.signup(Register(username, email, password))
+            Result.Success(response)
+        } catch (e: HttpException) {
+            val error = e.response()?.errorBody()?.string()
+
+            val jsonObject = JSONObject(error!!)
+            val errorMessage = jsonObject.getString("message")
+            Result.Error(errorMessage)
+        } catch (e: Exception) {
+        Result.Error(e.message.toString())
+    }
     }
 
-    fun getSession(): Flow<UserModel> {
-        return userPreference.getSession()
+    fun login(email: String, password: String): LiveData<Result<LoginResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.login(Login(email, password))
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
     }
 
-    suspend fun logout() {
-        userPreference.logout()
+    fun saveSession(loginResult: LoginResult, context: Context) {
+        val settingPreferences = UserPreference(context)
+        return settingPreferences.putUser(loginResult)
+    }
+
+    fun getSession(context: Context): LoginResult? {
+        val settingPreferences = UserPreference(context)
+        return settingPreferences.gainUser()
     }
 
     companion object {
         @Volatile
         private var instance: UserRepository? = null
         fun getInstance(
-            userPreference: UserPreference
+            apiService: ApiService,
+            pref: UserPreference
         ): UserRepository =
             instance ?: synchronized(this) {
-                instance ?: UserRepository(userPreference)
+                instance ?: UserRepository(apiService, pref)
             }.also { instance = it }
     }
 }

@@ -1,5 +1,6 @@
 package com.capstone.cuacatani.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.cuacatani.R
 import com.capstone.cuacatani.model.Plant
+import com.capstone.cuacatani.ui.detail.DetailActivity
 
 private const val ARG_PARAM2 = "param2"
 
@@ -39,7 +41,13 @@ class FruitFragment : Fragment() {
         recyclerView.layoutManager =layoutManager
         recyclerView.setHasFixedSize(true)
 
-        adapter = SectionsPagerAdapter(plantArrayList)
+        adapter = SectionsPagerAdapter(plantArrayList) { clickedPlant ->
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("PLANT_ID", clickedPlant.titlePlant)
+            intent.putExtra("PANEN_ID", clickedPlant.titlePanen)
+            intent.putExtra("IMAGE_ID", clickedPlant.titleImage)
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
     }
 

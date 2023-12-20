@@ -3,16 +3,19 @@ package com.capstone.cuacatani.ui.signup
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.capstone.cuacatani.R
 import com.capstone.cuacatani.ViewModelFactory
 import com.capstone.cuacatani.databinding.ActivitySignupBinding
 import com.capstone.cuacatani.ui.login.LoginActivity
+import com.capstone.cuacatani.data.Result
+import com.capstone.cuacatani.data.pref.UserModel
+import com.capstone.cuacatani.ui.main.MainActivity
 
 class SignupActivity : AppCompatActivity() {
 
@@ -30,26 +33,57 @@ class SignupActivity : AppCompatActivity() {
             startActivity(signupIntent)
         }
 
-        onAction()
-        playAnimation()
-    }
-
-    private fun onAction() {
         binding.btnSignup.setOnClickListener {
-            val name = binding.nameEditText.text.toString()
+            val username = binding.nameEditText.text.toString()
             val email = binding.emailEditText.text.toString()
             val password = binding.passEditText.text.toString()
 
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Account with this $email is ready. Lets explore it.")
-                setPositiveButton("Next") { _, _ ->
-                    finish()
+            if (password.length < 8) {
+                binding.btnSignup.error = "Minimal harus 8 karakter"
+            } else {
+                loadingCorrect()
+                viewModel.signupUser(username, email, password).observe(this) { output ->
+                    when (output) {
+                        is Result.Loading -> {
+                            // Handle loading state if needed
+                        }
+                        is Result.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            val response = output.data
+                            Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
+                            sendToLogin(UserModel(email, password))
+                        }
+                        is Result.Error -> {
+                            incorrectData()
+                            Toast.makeText(this, "${output.error}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
-                create()
-                show()
             }
         }
+
+        playAnimation()
+        supportActionBar?.hide()
+    }
+
+    private fun incorrectData(){
+        binding.progressBar.visibility = View.GONE
+        binding.nameEditText.isCursorVisible = true
+        binding.emailEditText.isCursorVisible = true
+        binding.passEditText.isCursorVisible = true
+    }
+
+    private fun loadingCorrect(){
+        binding.progressBar.visibility = View.GONE
+        binding.nameEditText.isCursorVisible = false
+        binding.emailEditText.isCursorVisible = false
+        binding.passEditText.isCursorVisible = false
+    }
+
+    private fun sendToLogin(data: UserModel){
+        val intent = Intent(this@SignupActivity, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun playAnimation() {

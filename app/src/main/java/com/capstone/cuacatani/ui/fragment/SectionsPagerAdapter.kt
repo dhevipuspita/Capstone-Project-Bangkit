@@ -9,27 +9,36 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.capstone.cuacatani.databinding.BoxPlantsBinding
 import com.capstone.cuacatani.model.Plant
 
-class SectionsPagerAdapter(private val newsList: ArrayList<Plant>) :
+class SectionsPagerAdapter(private val newsList: ArrayList<Plant>, private val onItemClick: (Plant) -> Unit) :
     RecyclerView.Adapter<SectionsPagerAdapter.ViewHolder>() {
 
-    class ViewHolder(private val binding: BoxPlantsBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(private val binding: BoxPlantsBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.ivPhoto
         val plant = binding.tvNamePlant
         val panen = binding.tvPanen
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(BoxPlantsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            BoxPlantsBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val list = newsList[position]
+        val plant = newsList[position]
 
-        holder.image.setImageResource(list.titleImage)
-        holder.plant.text = list.titlePlant
-        holder.panen.text = list.titlePanen
+        holder.image.setImageResource(plant.titleImage)
+        holder.plant.text = plant.titlePlant
+        holder.panen.text = plant.titlePanen
+
+        holder.itemView.setOnClickListener {
+            onItemClick.invoke(plant)
+        }
     }
-
 
     override fun getItemCount(): Int {
         return newsList.size
