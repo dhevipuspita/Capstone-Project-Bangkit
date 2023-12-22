@@ -85,4 +85,8 @@ dependencies {
     //location
     implementation("com.google.android.gms:play-services-maps:18.0.0")
     implementation("com.google.android.gms:play-services-location:18.0.0")
+
+    //tenserflow
+    implementation ("org.tensorflow:tensorflow-lite-task-vision-play-services:0.4.2")
+    implementation ("com.google.android.gms:play-services-tflite-gpu:16.1.0")
 }

@@ -22,6 +22,7 @@
             android:layout_centerVertical="true"
             android:contentDescription="@string/photo"
             tools:src="@tools:sample/avatars"
+            android:background="@color/brokenWhite"
             app:shapeAppearanceOverlay="@style/RoundCorner"/>
 
         <TextView

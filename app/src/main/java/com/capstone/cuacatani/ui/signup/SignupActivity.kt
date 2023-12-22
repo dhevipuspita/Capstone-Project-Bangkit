@@ -9,13 +9,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.capstone.cuacatani.R
 import com.capstone.cuacatani.ViewModelFactory
-import com.capstone.cuacatani.databinding.ActivitySignupBinding
-import com.capstone.cuacatani.ui.login.LoginActivity
 import com.capstone.cuacatani.data.Result
 import com.capstone.cuacatani.data.pref.UserModel
-import com.capstone.cuacatani.ui.main.MainActivity
+import com.capstone.cuacatani.databinding.ActivitySignupBinding
+import com.capstone.cuacatani.ui.login.LoginActivity
 
 class SignupActivity : AppCompatActivity() {
 
@@ -80,11 +78,24 @@ class SignupActivity : AppCompatActivity() {
         binding.passEditText.isCursorVisible = false
     }
 
-    private fun sendToLogin(data: UserModel){
-        val intent = Intent(this@SignupActivity, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+    private fun sendToLogin(data: UserModel) {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle("Signup Successful")
+        alertDialogBuilder.setMessage("Your account has been successfully created. Do you want to login now?")
+
+        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        alertDialogBuilder.setPositiveButton("Yes") { dialog, _ ->
+            val intent = Intent(this@SignupActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+            dialog.dismiss()
+        }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
+
 
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imgSignup, View.TRANSLATION_X, -30f, 30f).apply {

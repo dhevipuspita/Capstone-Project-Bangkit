@@ -86,29 +86,34 @@
     <string name="namePlant">Tomato</string>
     <string name="panen">90 days</string>
 
-    //plant
-    <string name="plant_1">Tomato</string>
-    <string name="plant_2">Tomato</string>
-    <string name="plant_3">Tomato</string>
-    <string name="plant_4">Tomato</string>
-    <string name="plant_5">Tomato</string>
-    <string name="plant_6">Tomato</string>
-    <string name="plant_7">Tomato</string>
-    <string name="plant_8">Tomato</string>
-    <string name="plant_9">Tomato</string>
-    <string name="plant_10">Tomato</string>
+    //corn
+    <string name="plant_1">Padi</string>
+    <string name="plant_2">Kacang Hijau</string>
+    <string name="plant_3">Kopi</string>
+    <string name="plant_4">Lentil Hitam</string>
+    <string name="plant_5">Lentil</string>
+    <string name="plant_6">Jagung</string>
+
+    //fruit
+    <string name="fruit_1">Anggur</string>
+    <string name="fruit_2">Apel</string>
+    <string name="fruit_3">Jeruk</string>
+    <string name="fruit_4">Melon</string>
+    <string name="fruit_5">Pepaya</string>
+    <string name="fruit_6">Semangka</string>
+    <string name="fruit_7">Mangga</string>
+
+    //veg
+    <string name="veg_1">Kacang Panjang</string>
+    <string name="veg_2">Kacang Polong</string>
+    <string name="veg_3">Buncis</string>
+    <string name="veg_4">Kapas</string>
 
     //panen
-    <string name="panen_1">60 days</string>
-    <string name="panen_2">60 days</string>
-    <string name="panen_3">60 days</string>
-    <string name="panen_4">60 days</string>
-    <string name="panen_5">60 days</string>
-    <string name="panen_6">60 days</string>
-    <string name="panen_7">60 days</string>
-    <string name="panen_8">60 days</string>
-    <string name="panen_9">60 days</string>
-    <string name="panen_10">60 days</string>
+    <string name="c_corn">Corn</string>
+    <string name="c_fruit">Fruit</string>
+    <string name="c_veg">Vegetables</string>
+
     <string name="email_invalid">Invalid email address</string>
     <string name="password_length">Minimum 8 char password</string>
     <string name="logout">Log Out</string>
@@ -135,4 +140,7 @@
     <string name="searchbar_hint">Find Plant</string>
     <string name="searchbar2_hint">Find Your City</string>
     <string name="condition">Sunny</string>
+    <string name="unsuccess_text">Unsuccessfull to load..</string>
+    <string name="plantt">List Plant</string>
+    <string name="searchbar3_hint">Search plant</string>
 </resources>

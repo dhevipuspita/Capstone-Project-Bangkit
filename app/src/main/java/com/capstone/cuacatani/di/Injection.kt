@@ -7,7 +7,6 @@ import com.capstone.cuacatani.network.ApiConfig
 
 object Injection {
     fun provideRepository(context: Context): UserRepository {
-//        val pref = UserPreference.getInstance(context.dataStore)
         val pref = UserPreference(context)
         val apiService = ApiConfig.getApiService()
         return UserRepository.getInstance(apiService, pref)

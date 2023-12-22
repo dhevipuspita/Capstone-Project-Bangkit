@@ -53,42 +53,21 @@ class VegFragment : Fragment() {
         plantArrayList = arrayListOf<Plant>()
 
         imageId = arrayOf(
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato
+            R.drawable.kacang_panjang,
+            R.drawable.kacang_polong,
+            R.drawable.buncis
         )
 
         plantId = arrayOf(
-            getString(R.string.plant_1),
-            getString(R.string.plant_2),
-            getString(R.string.plant_3),
-            getString(R.string.plant_4),
-            getString(R.string.plant_5),
-            getString(R.string.plant_6),
-            getString(R.string.plant_7),
-            getString(R.string.plant_8),
-            getString(R.string.plant_9),
-            getString(R.string.plant_10)
+            getString(R.string.veg_1),
+            getString(R.string.veg_2),
+            getString(R.string.veg_3)
         )
 
         panenId = arrayOf(
-            getString(R.string.panen_1),
-            getString(R.string.panen_2),
-            getString(R.string.panen_3),
-            getString(R.string.panen_4),
-            getString(R.string.panen_5),
-            getString(R.string.panen_6),
-            getString(R.string.panen_7),
-            getString(R.string.panen_8),
-            getString(R.string.panen_9),
-            getString(R.string.panen_10)
+            getString(R.string.c_veg),
+            getString(R.string.c_veg),
+            getString(R.string.c_veg)
         )
 
         for (i in imageId.indices){

@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         setDefaultTab(CornFragment())
         setOnTabClickedListener(CornFragment())
 
-        fetchWeatherData("Kediri, Jatim")
+        fetchWeatherData("Surabaya")
         searchCity()
     }
 
@@ -148,14 +148,15 @@ class MainActivity : AppCompatActivity() {
             "sunny" -> R.drawable.sunny
             "rain" -> R.drawable.rain
             "snow" -> R.drawable.snow
-            else -> R.drawable.unknown
+            "haze" -> R.drawable.haze
+            else -> R.drawable.sunny
         }
 
         binding.ivAwan.setImageResource(imageResId)
     }
 
     private fun date(): String {
-        val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        val sdf = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         return sdf.format((Date()))
     }
 

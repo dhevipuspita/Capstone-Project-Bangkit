@@ -1,29 +1,19 @@
 package com.capstone.cuacatani.ui.about
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
+import androidx.appcompat.app.AppCompatActivity
 import com.capstone.cuacatani.R
 import com.capstone.cuacatani.ViewModelFactory
-import com.capstone.cuacatani.data.pref.UserModel
 import com.capstone.cuacatani.data.pref.UserPreference
 import com.capstone.cuacatani.databinding.ActivityAboutBinding
-import com.capstone.cuacatani.databinding.ActivityMainBinding
 import com.capstone.cuacatani.response.LoginResult
-import com.capstone.cuacatani.ui.login.LoginActivity
-import com.capstone.cuacatani.ui.login.LoginViewModel
 import com.capstone.cuacatani.ui.main.MainActivity
 import com.capstone.cuacatani.ui.plants.PlantsActivity
 import com.capstone.cuacatani.ui.welcome.WelcomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
-import kotlinx.coroutines.launch
 
 class AboutActivity : AppCompatActivity() {
     private val viewModel by viewModels<AboutViewModel> {
@@ -96,11 +86,27 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun logout() {
-        viewModel.saveSession(LoginResult("", "",), this)
-        val intent = Intent(this@AboutActivity, WelcomeActivity::class.java)
-        startActivity(intent)
-        finish()
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle("Logout")
+        alertDialogBuilder.setMessage("Are you sure you want to logout?")
+
+        alertDialogBuilder.setPositiveButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        alertDialogBuilder.setNegativeButton("Yes") { dialog, _ ->
+            viewModel.saveSession(LoginResult("", "",), this)
+            val intent = Intent(this@AboutActivity, WelcomeActivity::class.java)
+            startActivity(intent)
+            finish()
+            dialog.dismiss()
+        }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
+
+
 
 
 }

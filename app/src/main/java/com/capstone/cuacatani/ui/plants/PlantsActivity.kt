@@ -2,108 +2,48 @@ package com.capstone.cuacatani.ui.plants
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.capstone.cuacatani.R
+import com.capstone.cuacatani.ViewModelFactory
+import com.capstone.cuacatani.data.Result
+import com.capstone.cuacatani.data.UserAdapter
+import com.capstone.cuacatani.data.pref.UserPreference
 import com.capstone.cuacatani.databinding.ActivityPlantsBinding
-import com.capstone.cuacatani.model.Plant
+import com.capstone.cuacatani.response.PlantsResponseItem
 import com.capstone.cuacatani.ui.about.AboutActivity
 import com.capstone.cuacatani.ui.detail.DetailActivity
-import com.capstone.cuacatani.ui.fragment.SectionsPagerAdapter
 import com.capstone.cuacatani.ui.main.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PlantsActivity : AppCompatActivity() {
 
-    private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: SectionsPagerAdapter
-    private lateinit var plantArrayList: ArrayList<Plant>
-    private lateinit var binding: ActivityPlantsBinding
+    private val viewModel by viewModels<PlantsViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
-    private lateinit var imageId: Array<Int>
-    private lateinit var plantId: Array<String>
-    private lateinit var panenId: Array<String>
+    private lateinit var binding: ActivityPlantsBinding
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlantsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dataInitialize()
         val layoutManager = LinearLayoutManager(this)
         binding.rvList.layoutManager = layoutManager
 
-        recyclerView = binding.rvList
-        recyclerView.layoutManager = layoutManager
-        recyclerView.setHasFixedSize(true)
-
-        adapter = SectionsPagerAdapter(plantArrayList) { clickedPlant ->
-            val intent = Intent(this@PlantsActivity, DetailActivity::class.java)
-            intent.putExtra("PLANT_ID", clickedPlant.titlePlant)
-            intent.putExtra("PANEN_ID", clickedPlant.titlePanen)
-            intent.putExtra("IMAGE_ID", clickedPlant.titleImage)
-            startActivity(intent)
-        }
-        recyclerView.adapter = adapter
-
         bindUIComponents()
+        handleTabButtonPress()
 
-        // Select Search Activity by default
         bottomNavigationView.selectedItemId = R.id.navigation_plant
 
-        handleTabButtonPress()
+        observePlants()
         supportActionBar?.hide()
-    }
-
-    private fun dataInitialize(){
-        plantArrayList = arrayListOf<Plant>()
-
-        imageId = arrayOf(
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato,
-            R.drawable.tomato
-        )
-
-        plantId = arrayOf(
-            getString(R.string.plant_1),
-            getString(R.string.plant_2),
-            getString(R.string.plant_3),
-            getString(R.string.plant_4),
-            getString(R.string.plant_5),
-            getString(R.string.plant_6),
-            getString(R.string.plant_7),
-            getString(R.string.plant_8),
-            getString(R.string.plant_9),
-            getString(R.string.plant_10)
-        )
-
-        panenId = arrayOf(
-            getString(R.string.panen_1),
-            getString(R.string.panen_2),
-            getString(R.string.panen_3),
-            getString(R.string.panen_4),
-            getString(R.string.panen_5),
-            getString(R.string.panen_6),
-            getString(R.string.panen_7),
-            getString(R.string.panen_8),
-            getString(R.string.panen_9),
-            getString(R.string.panen_10)
-        )
-
-        for (i in imageId.indices){
-            val plant = Plant(imageId[i], plantId[i], panenId[i])
-            plantArrayList.add(plant)
-        }
     }
 
     private fun bindUIComponents() {
@@ -138,4 +78,28 @@ class PlantsActivity : AppCompatActivity() {
         finish()
     }
 
+    private fun observePlants() {
+        viewModel.getPlants().observe(this) { result ->
+            when (result) {
+                is Result.Success -> displayPlants(result.data)
+                is Result.Error -> showError(result.error)
+                else -> {}
+            }
+        }
+    }
+
+    private fun displayPlants(plants: List<PlantsResponseItem>?) {
+        if (plants != null) {
+            val adapter = UserAdapter { user ->
+            }
+            adapter.submitList(plants)
+            binding.rvList.adapter = adapter
+        }
+    }
+
+
+    private fun showError(errorMessage: String) {
+        Toast.makeText(this, "Gagal: $errorMessage", Toast.LENGTH_SHORT).show()
+        Log.d("Error", errorMessage)
+    }
 }

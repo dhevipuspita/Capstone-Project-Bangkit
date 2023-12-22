@@ -26,6 +26,8 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
         token.value = DataToken
         return token
     }
+
+    fun getPlants() = userRepository.getPlants()
 }
 
 class WeatherViewModel: ViewModel() {

@@ -9,6 +9,7 @@ import com.capstone.cuacatani.network.Login
 import com.capstone.cuacatani.network.Register
 import com.capstone.cuacatani.response.LoginResponse
 import com.capstone.cuacatani.response.LoginResult
+import com.capstone.cuacatani.response.PlantsResponseItem
 import com.capstone.cuacatani.response.RegisterResponse
 import org.json.JSONObject
 import retrofit2.HttpException
@@ -56,6 +57,17 @@ class UserRepository private constructor(
         val settingPreferences = UserPreference(context)
         return settingPreferences.gainUser()
     }
+
+    fun getPlants(): LiveData<Result<List<PlantsResponseItem>>> =
+        liveData {
+            emit(Result.Loading)
+            try {
+                val response = apiService.getPlants()
+                emit(Result.Success(response))
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }
 
     companion object {
         @Volatile
